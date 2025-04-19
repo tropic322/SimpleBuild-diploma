@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Simple Builder</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap.min.css} "/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Simple Builder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8080">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/aboutPage">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <form id="secondPage" name="secondPage" method="get">
+        <fieldset>
+        <div class="form-group">
+        Дипломная работа студента 4 курса 7 группы<br>
+        Направления 09.03.03 - Прикладная информатика<br>
+        Института высоких технологий и пьезотехники<br>
+        Князева Александра Александровича<br>
+        Веб-приложение "Simple Builder"
+
+
+        </div>
+        </fieldset>
+    </form>
+
+
+
+</div>
+
+<script th:src="@{/webjars/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap.min.js}"></script>
+
+
+
+</body>
+</html>

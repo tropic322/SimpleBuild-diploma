@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Simple Builder</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap.min.css} "/>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Simple Builder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="http://localhost:8080">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/aboutPage">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <form id="secondPage" name="secondPage" method="get">
+        <fieldset>
+            <div class="row">
+                <div class="col">
+                <img src="../static/img/3/3_monolit.jpg" alt="альтернативный текст"  width="260" height="260"/>
+
+                    <br><br>
+                    Название - <th:block th:text="${monolit.getName()}">SubroofingMaterial 1 name</th:block><br>
+                    Стоимость строительства м^2 - <th:block th:text="${monolit.getCost()}">SubroofingMaterial 1 cost</th:block><br>
+                    Скорость строительства м^2 - <th:block th:text="${monolit.getBuildingHours()}">SubroofingMaterial 1 BuildingHours</th:block> час<br>
+                    Огнестоек - <th:block th:text="${monolit.isFireResistance()}">SubroofingMaterial 1 BuildingHours</th:block><br>
+                    Звукопроницаемый - <th:block th:text="${monolit.isSoundproofing()}">SubroofingMaterial 1 heatloss</th:block><br>
+                    <br><br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="button1" id="button1" class="custom-control-input" value="1" >
+                        <label class="custom-control-label" for="button1">Option1</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="../static/img/3/3_wood.png" alt="альтернативный текст"   width="260" height="260"/>
+
+                    <br><br>
+                    Название - <th:block th:text="${wood.getName()}">SubroofingMaterial 2 name</th:block><br>
+                    Стоимость строительства м^2 - <th:block th:text="${wood.getCost()}">SubroofingMaterial 2 cost</th:block><br>
+                    Скорость строительства м^2 - <th:block th:text="${wood.getBuildingHours()}">SubroofingMaterial 2 BuildingHours</th:block> час<br>
+                    Огнестоек - <th:block th:text="${wood.isFireResistance()}">SubroofingMaterial 2 BuildingHours</th:block><br>
+                    Звукопроницаемый - <th:block th:text="${wood.isSoundproofing()}">SubroofingMaterial 2 heatloss</th:block><br>
+                    <br><br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" name="button2" id="button2" class="custom-control-input" value="2">
+                        <label class="custom-control-label" for="button2">Option2</label>
+                    </div>
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <br><br>
+
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <input type="submit" class="btn btn-lg btn-info" value="Next page" />
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                    </div>
+                </div>
+
+        </fieldset>
+    </form>
+
+
+
+</div>
+
+<script th:src="@{/webjars/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap.min.js}"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#secondPage").submit(function (event) {
+            event.preventDefault();
+
+            var data=0;
+            if(document.getElementById('button1').checked) {
+                var data  = {'id':$("#button1").val()};
+            }else if(document.getElementById('button2').checked) {
+                var data  = {'id':$("#button2").val()};
+            }
+
+            $.ajax({
+                type: "GET",
+                url:  "/inputSubroofingMaterial",
+                data: data,
+                dataType: 'text',
+                cache: false,
+                timeout: 100000,
+                success : function(response) {
+                    document.location.href = 'http://localhost:8080/forthPage';
+                },
+                error : function(xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+
+            });
+        });
+
+    });
+
+
+</script>
+
+</body>
+</html>
